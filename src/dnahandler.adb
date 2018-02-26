@@ -41,9 +41,10 @@ package body dnahandler is
       
    end completeDNA;
    
-   procedure writeDNA(dna: in tdna; filename: in String) is
+   procedure writeDNA(dna: in tdna; filename: in String; dna_len: out Positive) is
       
       file: File_Type;
+      len: Positive;
       
    begin
       
@@ -55,6 +56,30 @@ package body dnahandler is
       
       Close(file);
       
+      len := dna.Base'Length;
+      dna_len := len;
+      
    end writeDNA;
+   
+   procedure openDNA(filename: in String; dna_len: in Positive) is
+      
+      file: File_Type;
+      line_len: Natural;
+      line: String(1..line_len);
+      
+   begin
+      
+      Put_Line("Reading DNA chain from " & filename & "...");
+      
+      Open(file, mode => In_File, name => filename);
+      
+      while not End_Of_File(file) loop
+         Get_Line(file, line, line_len);
+         Put_Line(line(1..line_len));
+      end loop;
+      
+      Close(file);
+      
+   end openDNA;
 
 end dnahandler;
