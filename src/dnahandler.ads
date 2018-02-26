@@ -4,8 +4,8 @@ package dnahandler is
    
    procedure readBaseChain(chain: out tdna; text: in String);
    procedure completeDNA(dna: in out tdna);
-   procedure writeDNA(dna: in tdna; filename: in String; dna_len: out Positive);
-   procedure openDNA(filename: in String; dna_len: in Positive);
+   procedure writeDNA(dna: in tdna; filename: in String);
+   procedure openDNA(filename: in String);
    
 private
    
